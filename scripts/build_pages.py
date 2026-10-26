@@ -7,36 +7,36 @@ SRC = ROOT / "src"
 SECTIONS = SRC / "sections"
 
 PAGES = {
-    "klinika.html": {
-        "title": "O nas – OrthoCare Radom",
+    "o-nas.html": {
+        "title": "O nas – Centrum Ortopedyczne OrthoCare – Radom",
         "active": "o-nas",
         "page_title": "O nas",
         "section": "o-nas.html",
         "narrow": False,
     },
     "zespol.html": {
-        "title": "Lekarze – OrthoCare Radom",
+        "title": "Lekarze – Centrum Ortopedyczne OrthoCare – Radom",
         "active": "lekarze",
         "page_title": "Lekarze",
         "section": "lekarze.html",
         "narrow": False,
     },
     "cennik.html": {
-        "title": "Usługi i cennik – OrthoCare Radom",
+        "title": "Usługi i cennik – Centrum Ortopedyczne OrthoCare – Radom",
         "active": "cennik",
         "page_title": "Usługi i cennik",
         "section": "cennik.html",
         "narrow": True,
     },
     "zabiegi.html": {
-        "title": "Zabiegi – OrthoCare Radom",
+        "title": "Zabiegi – Centrum Ortopedyczne OrthoCare – Radom",
         "active": "zabiegi",
         "page_title": "Zabiegi",
         "section": "zabiegi.html",
         "narrow": True,
     },
     "kriolezja.html": {
-        "title": "Kriolezja – OrthoCare Radom",
+        "title": "Kriolezja – Centrum Ortopedyczne OrthoCare – Radom",
         "active": "kriolezja",
         "page_title": "Kriolezja",
         "section": "kriolezja.html",
@@ -45,7 +45,7 @@ PAGES = {
 }
 
 NAV_LINKS = [
-    ("o-nas", "O nas", "klinika.html"),
+    ("o-nas", "O nas", "o-nas.html"),
     ("lekarze", "Lekarze", "zespol.html"),
     ("cennik", "Usługi i cennik", "cennik.html"),
     ("zabiegi", "Zabiegi", "zabiegi.html"),
@@ -83,7 +83,7 @@ HOME = """
         </div>
         <p class="intro-cta-text">Poznaj nas bliżej i zobacz, jak możemy Ci pomóc</p>
         <div class="intro-actions">
-          <a href="klinika.html" class="btn btn--primary">O nas</a>
+          <a href="o-nas.html" class="btn btn--primary">O nas</a>
         </div>
       </div>
     </div>
@@ -201,9 +201,9 @@ KONTAKT_BODY = """
         </div>
         <div class="kontakt-panel kontakt-panel--visit">
           <div class="kontakt-visit__hero">
-            <img src="assets/clinic-building.jpg" alt="Klinika OrthoCare Radom" class="kontakt-visit__photo" loading="lazy" decoding="async">
+            <img src="assets/budynek.jpg" alt="OrthoCare Radom" class="kontakt-visit__photo" loading="lazy" decoding="async">
             <div class="kontakt-visit__overlay">
-              <h2 class="kontakt-visit__title">Odwiedź naszą klinikę</h2>
+              <h2 class="kontakt-visit__title">Odwiedź nas</h2>
               <a href="https://maps.google.com/?q=ul.+Dębowa+2,+26-600+Radom" target="_blank" rel="noopener" class="btn btn--white kontakt-visit__btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Wyznacz trasę
@@ -228,9 +228,9 @@ BOOKING_MODAL = """
       </svg>
     </button>
     <div class="booking-modal__body">
-      <h2 class="heading booking-modal__title">Umów wizytę w OrthoCare</h2>
+      <h2 class="heading booking-modal__title">Umów wizytę w Centrum Ortopedycznym OrthoCare</h2>
       <div class="booking-modal__widget">
-        <a class="zl-facility-url" href="https://www.znanylekarz.pl/placowki/klinika-orthocare" rel="nofollow" data-zlw-facility="klinika-orthocare" data-zlw-type="facility-big" data-zlw-saas-only="true" data-zlw-a11y-title="Widget umówienia wizyty lekarskiej">Klinika OrthoCare</a>
+        <a class="zl-facility-url" href="https://www.znanylekarz.pl/placowki/klinika-orthocare" rel="nofollow" data-zlw-facility="klinika-orthocare" data-zlw-type="facility-big" data-zlw-saas-only="true" data-zlw-a11y-title="Widget umówienia wizyty lekarskiej">Centrum Ortopedyczne OrthoCare</a>
       </div>
     </div>
   </div>
@@ -272,10 +272,11 @@ def nav_html(active: str, logo_src: str = LOGO) -> str:
     for key, label, href in NAV_LINKS:
         cls = ' class="is-active"' if key == active else ''
         links.append(f'        <li><a href="{href}"{cls}>{label}</a></li>')
-    mobile = '\n'.join(
-        f'    <a href="{href}"{" class=\"is-active\"" if key == active else ""}>{label}</a>'
-        for key, label, href in NAV_LINKS
-    )
+    mobile_parts = []
+    for key, label, href in NAV_LINKS:
+        active_cls = ' class="is-active"' if key == active else ''
+        mobile_parts.append(f'    <a href="{href}"{active_cls}>{label}</a>')
+    mobile = '\n'.join(mobile_parts)
     kontakt_active = ' class="is-active"' if active == 'kontakt' else ''
     return f"""<header id="site-header">
 <nav class="nav">
@@ -337,7 +338,7 @@ def footer_html() -> str:
           <p class="footer-dark__heading">Dokumenty</p>
           <ul class="footer-dark__list">
             <li><a href="assets/rodo.pdf" target="_blank">Klauzula RODO</a></li>
-            <li><a href="assets/regulamin.pdf" target="_blank">Regulamin kliniki</a></li>
+            <li><a href="assets/regulamin.pdf" target="_blank">Regulamin</a></li>
             <li><a href="assets/downloads/Polityka cookies serwisu OrthoCare.pdf" target="_blank">Polityka cookies</a></li>
           </ul>
         </div>
@@ -355,7 +356,7 @@ def footer_html() -> str:
   </div>
   <div class="footer-dark__bottom">
     <div class="wrap">
-      <span>© 2026 Klinika OrthoCare. Wszelkie prawa zastrzeżone.</span>
+      <span>© 2026 Centrum Ortopedyczne OrthoCare. Wszelkie prawa zastrzeżone.</span>
       <span>ul. Dębowa 2, 26-600 Radom | <a href="tel:889817012">889 817 012</a></span>
     </div>
   </div>
@@ -411,7 +412,7 @@ def fix_section_links(content: str) -> str:
 def main():
     # Homepage — tylko sekcje startowe
     index_html = shell(
-        "Klinika OrthoCare – Radom",
+        "Centrum Ortopedyczne OrthoCare – Radom",
         "home",
         HOME + TESTIMONIALS + CTA,
         extra_css=False,
@@ -437,7 +438,7 @@ def main():
         print(f"{filename} ({len(html)} bytes)")
 
     # Kontakt
-    kontakt_html = shell("Kontakt – OrthoCare Radom", "kontakt", KONTAKT_BODY, extra_css=False, tailwind=False)
+    kontakt_html = shell("Kontakt – Centrum Ortopedyczne OrthoCare – Radom", "kontakt", KONTAKT_BODY, extra_css=False, tailwind=False)
     (SRC / "kontakt.html").write_text(kontakt_html, encoding="utf-8")
     print(f"kontakt.html ({len(kontakt_html)} bytes)")
 
@@ -448,7 +449,7 @@ def main():
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0;url=kriolezja.html">
   <link rel="canonical" href="kriolezja.html">
-  <title>Przekierowanie – OrthoCare</title>
+  <title>Przekierowanie – Centrum Ortopedyczne OrthoCare</title>
   <script>location.replace('kriolezja.html');</script>
 </head>
 <body><p><a href="kriolezja.html">Przejdź do Kriolezja</a></p></body>

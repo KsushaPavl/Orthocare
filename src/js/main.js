@@ -412,9 +412,9 @@ function ensureBookingModalElement() {
                     '</svg>' +
                 '</button>' +
                 '<div class="booking-modal__body">' +
-                    '<h2 class="heading booking-modal__title">Umów wizytę w Klinice OrthoCare</h2>' +
+                    '<h2 class="heading booking-modal__title">Umów wizytę w Centrum Ortopedycznym OrthoCare</h2>' +
                     '<div class="booking-modal__widget">' +
-                        '<a class="zl-facility-url" href="https://www.znanylekarz.pl/placowki/klinika-orthocare" rel="nofollow" data-zlw-facility="klinika-orthocare" data-zlw-type="facility-big" data-zlw-saas-only="true" data-zlw-a11y-title="Widget umówienia wizyty lekarskiej">Klinika OrthoCare</a>' +
+                        '<a class="zl-facility-url" href="https://www.znanylekarz.pl/placowki/klinika-orthocare" rel="nofollow" data-zlw-facility="klinika-orthocare" data-zlw-type="facility-big" data-zlw-saas-only="true" data-zlw-a11y-title="Widget umówienia wizyty lekarskiej">Centrum Ortopedyczne OrthoCare</a>' +
                     '</div>' +
                 '</div>' +
             '</div>' +
@@ -534,9 +534,9 @@ function openGalleryModal(imageId) {
         return;
     }
     modalImage.src = clickedImage.dataset.fullSrc || clickedImage.src;
-    modalImage.alt = clickedImage.alt || 'Klinika OrthoCare';
+    modalImage.alt = clickedImage.alt || 'OrthoCare';
     if (modalCaption) {
-        modalCaption.textContent = clickedImage.alt || 'Klinika OrthoCare';
+        modalCaption.textContent = clickedImage.alt || 'OrthoCare';
     }
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');

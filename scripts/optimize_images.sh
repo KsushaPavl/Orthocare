@@ -101,7 +101,7 @@ for i in range(cols):
     src.crop((left, 0, right, h)).save(cols_dir / f"team-{i + 1}.jpg", quality=92, optimize=True)
 PY
 fi
-compress "$ASSETS/clinic-building.jpg" "$ASSETS/clinic-building.jpg" 1280 76
+compress "$ASSETS/budynek.jpg" "$ASSETS/budynek.jpg" 1280 76
 for step in step-1.jpg step-2.jpg step-3.jpg; do
   [ -f "$ASSETS/$step" ] && compress "$ASSETS/$step" "$ASSETS/$step" 800 76
 done

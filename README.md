@@ -1,6 +1,6 @@
-# OrthoCare — strona kliniki (GitHub Pages)
+# OrthoCare — strona placówki (GitHub Pages)
 
-Statyczna strona Kliniki OrthoCare w Radomiu. Publikacja przez folder `docs/` na GitHub Pages z domeną `ortopedawradomiu.pl`.
+Statyczna strona OrthoCare w Radomiu. Publikacja przez folder `docs/` na GitHub Pages z domeną `ortopedawradomiu.pl`.
 
 ## Struktura projektu
 
