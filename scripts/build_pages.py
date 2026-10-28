@@ -516,7 +516,7 @@ def main():
         KONTAKT_BODY,
         extra_css=False,
         tailwind=False,
-        og_image="https://ortopedawradomiu.pl/assets/budynek.jpg",
+        og_image="https://orthocare-radom.pl/assets/budynek.jpg",
     )
     (SRC / "kontakt.html").write_text(kontakt_html, encoding="utf-8")
     print(f"kontakt.html ({len(kontakt_html)} bytes)")
