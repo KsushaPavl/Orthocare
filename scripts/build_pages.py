@@ -198,7 +198,7 @@ KONTAKT_BODY = """
               </span>
               <div>
                 <p class="kontakt-list__label">Napisz do nas</p>
-                <a href="mailto:klinikaorthocare@gmail.com" class="kontakt-list__value">klinikaorthocare@gmail.com</a>
+                <a href="mailto:rejestracja@orthocare-radom.pl" class="kontakt-list__value">rejestracja@orthocare-radom.pl</a>
                 <p class="kontakt-list__note">Odpowiedź w 24 h</p>
               </div>
             </li>
