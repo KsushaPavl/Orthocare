@@ -10,12 +10,10 @@
   <meta property="og:site_name" content="Centrum Ortopedyczne OrthoCare">
   <meta name="twitter:title" content="Usługi i cennik – Centrum Ortopedyczne OrthoCare – Radom">
   <meta name="twitter:description" content="Centrum Ortopedyczne OrthoCare – Radom. Nowoczesna ortopedia, diagnostyka i zabiegi.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="dns-prefetch" href="https://platform.docplanner.com">
+  <link rel="icon" type="image/jpeg" href="favicon.jpg?v=1">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/dm-serif-display-400-latin.woff2" crossorigin>
+  <link href="css/fonts.css" rel="stylesheet">
   <link href="css/theme.css" rel="stylesheet">
   <link href="css/legacy.css" rel="stylesheet">
   <link href="dist/output.css" rel="stylesheet">
@@ -26,7 +24,7 @@
 <nav class="nav">
   <div class="nav__wrap">
     <a href="index.html" class="nav__logo">
-      <img src="assets/logo-orthocare.png" alt="OrthoCare" width="180" height="38" decoding="async" />
+      <picture><source type="image/webp" srcset="assets/logo-orthocare.webp"><img src="assets/logo-orthocare.png" alt="OrthoCare" width="180" height="38" decoding="async" ></picture>
     </a>
     <ul class="nav__links" id="navLinks">
         <li><a href="o-nas.html">O nas</a></li>
@@ -847,7 +845,7 @@
     <div class="wrap">
       <div class="footer-dark__grid">
         <div class="footer-dark__brand">
-          <img src="assets/logo-footer.png" alt="OrthoCare" class="footer-dark__logo" loading="lazy" decoding="async" width="240" height="96" />
+          <picture><source type="image/webp" srcset="assets/logo-footer.webp"><img src="assets/logo-footer.png" alt="OrthoCare" class="footer-dark__logo" loading="lazy" decoding="async" width="240" height="96" ></picture>
           <p class="footer-dark__tagline">Ortopedia nowego pokolenia. Łączymy najnowocześniejszą wiedzę medyczną z indywidualnym podejściem.</p>
           <div class="footer-dark__social">
             <a href="https://www.facebook.com/profile.php?id=61564864085861&sk=about" target="_blank" class="footer-social-btn" aria-label="Facebook">fb</a>
@@ -871,15 +869,16 @@
             <li><a href="assets/rodo.pdf" target="_blank">Klauzula RODO</a></li>
             <li><a href="assets/regulamin.pdf" target="_blank">Regulamin</a></li>
             <li><a href="assets/downloads/Polityka cookies serwisu OrthoCare.pdf" target="_blank">Polityka cookies</a></li>
+            <li><a href="#" data-cookie-settings>Ustawienia cookies</a></li>
           </ul>
         </div>
         <div class="footer-dark__col">
           <p class="footer-dark__heading">Nasi partnerzy</p>
           <div class="footer-dark__partners">
-            <a href="https://warsaweagles.com/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-eagles.png" alt="Warsaw Eagles" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://www.rplusradom.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-rehab-plus.png" alt="Rehabilitacja Plus" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://www.wksczarni.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-czarni-radom.png" alt="WKS Czarni Radom" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://gipsme.pl/" target="_blank" rel="noopener" class="footer-partner-tile footer-partner-tile--gipsme"><img src="assets/gipsme.png" alt="gipsme" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
+            <a href="https://warsaweagles.com/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-eagles.webp"><img src="assets/partner-eagles.png" alt="Warsaw Eagles" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://www.rplusradom.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-rehab-plus.webp"><img src="assets/partner-rehab-plus.png" alt="Rehabilitacja Plus" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://www.wksczarni.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-czarni-radom.webp"><img src="assets/partner-czarni-radom.png" alt="WKS Czarni Radom" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://gipsme.pl/" target="_blank" rel="noopener" class="footer-partner-tile footer-partner-tile--gipsme"><picture><source type="image/webp" srcset="assets/gipsme.webp"><img src="assets/gipsme.png" alt="gipsme" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
           </div>
         </div>
       </div>
@@ -912,24 +911,8 @@
 
 
 
+<script src="js/cookies.js" defer></script>
 <script src="js/main.js" defer></script>
-<script defer>
-(function () {
-  function loadBookingWidget() {
-    if (document.getElementById('zl-widget-s')) return;
-    var js = document.createElement('script');
-    js.id = 'zl-widget-s';
-    js.src = 'https://platform.docplanner.com/js/widget.js';
-    js.async = true;
-    document.body.appendChild(js);
-  }
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.umow-wizyte-btn, .zl-facility-url')) {
-      loadBookingWidget();
-    }
-  }, { passive: true });
-})();
-</script>
 
 </body>
 </html>

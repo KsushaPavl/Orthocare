@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build multi-page OrthoCare site from shared templates and section files."""
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,19 +58,37 @@ LOGO = "assets/logo-orthocare.png"
 HOME = """
   <section class="hero hero-desktop full-bleed">
     <picture>
-      <img src="assets/hero-desktop.jpg" alt="OrthoCare centrum ortopedyczne" class="hero-desktop__img" fetchpriority="high" decoding="async" width="3600" height="1558" sizes="100vw" />
+      <source type="image/webp" srcset="assets/hero-desktop.webp">
+      <img src="assets/hero-desktop.jpg" alt="OrthoCare centrum ortopedyczne" class="hero-desktop__img" fetchpriority="high" decoding="async" width="2800" height="1212" sizes="100vw" />
     </picture>
   </section>
 
   <section class="hero hero-mobile">
     <div class="hero-photos">
-      <img src="assets/hero-1.jpg" alt="OrthoCare">
-      <img src="assets/hero-2.jpg" alt="OrthoCare" class="hero-center">
-      <img src="assets/hero-3.jpg" alt="OrthoCare">
+      <picture>
+        <source type="image/webp" srcset="assets/hero-1.webp">
+        <img src="assets/hero-1.jpg" alt="OrthoCare" decoding="async" width="720" height="850">
+      </picture>
+      <picture class="hero-center">
+        <source type="image/webp" srcset="assets/hero-2.webp">
+        <img src="assets/hero-2.jpg" alt="OrthoCare" class="hero-center" fetchpriority="high" decoding="async" width="720" height="850">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="assets/hero-3.webp">
+        <img src="assets/hero-3.jpg" alt="OrthoCare" decoding="async" width="720" height="850">
+      </picture>
     </div>
     <div class="hero-plaque">
-      <h1 class="hero-logo">OrthoCare</h1>
-      <p class="hero-sub">centrum ortopedyczne</p>
+      <h1 class="hero-logo">
+        <picture>
+          <source type="image/webp" srcset="assets/logo-hero-white.webp">
+          <img src="assets/logo-hero-white.png" alt="OrthoCare" width="819" height="149" decoding="async">
+        </picture>
+      </h1>
+      <div class="hero-mobile-cta">
+        <button type="button" class="btn btn--primary umow-wizyte-btn">Umów wizytę</button>
+        <a href="o-nas.html" class="btn btn--outline">O nas</a>
+      </div>
     </div>
   </section>
 
@@ -83,14 +102,15 @@ HOME = """
         </div>
         <p class="intro-cta-text">Poznaj nas bliżej i zobacz, jak możemy Ci pomóc</p>
         <div class="intro-actions">
-          <a href="o-nas.html" class="btn btn--primary">O nas</a>
+          <button type="button" class="btn btn--primary umow-wizyte-btn">Umów wizytę</button>
+          <a href="o-nas.html" class="btn btn--outline">O nas</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="intro-team-photo full-bleed">
-    <img src="assets/team-photo.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--desktop" loading="lazy" decoding="async" fetchpriority="low" width="4711" height="1577" />
+    <img src="assets/team-photo.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--desktop" loading="lazy" decoding="async" fetchpriority="low" width="2800" height="937" />
     <img src="assets/team-mobile.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--mobile" loading="lazy" decoding="async" width="1024" height="682" />
   </section>
 
@@ -211,7 +231,16 @@ KONTAKT_BODY = """
             </div>
           </div>
           <div class="kontakt-visit__map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458!2d21.15!3d51.405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sul.+D%C4%99bowa+2+Radom!5e0!3m2!1spl!2spl!4v1" allowfullscreen loading="lazy" title="Mapa OrthoCare"></iframe>
+            <!-- Mapa Google wczytywana przez js/cookies.js dopiero po akceptacji plików cookies -->
+            <div class="map-consent" data-consent-map data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458!2d21.15!3d51.405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sul.+D%C4%99bowa+2+Radom!5e0!3m2!1spl!2spl!4v1" data-map-title="Mapa OrthoCare" data-map-link="https://maps.google.com/?q=ul.+Dębowa+2,+26-600+Radom">
+              <div class="map-consent__box">
+                <p class="map-consent__text">Aby wyświetlić mapę, zaakceptuj pliki cookies.</p>
+                <div class="map-consent__actions">
+                  <button type="button" class="btn btn--primary" data-cookie-accept>Akceptuję</button>
+                  <a class="btn btn--outline" href="https://maps.google.com/?q=ul.+Dębowa+2,+26-600+Radom" target="_blank" rel="noopener">Otwórz w Google Maps</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -237,33 +266,35 @@ BOOKING_MODAL = """
 </div>
 """
 
-FONTS = """  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="dns-prefetch" href="https://platform.docplanner.com">
+# Czcionki serwowane lokalnie (src/assets/fonts) – brak zapytań do Google Fonts
+FONTS = """  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/dm-serif-display-400-latin.woff2" crossorigin>
+  <link href="css/fonts.css" rel="stylesheet">
 """
 
+FAVICON = '  <link rel="icon" type="image/jpeg" href="favicon.jpg?v=1">\n'
+
+SITE_DESCRIPTION = "Centrum Ortopedyczne OrthoCare – Radom. Nowoczesna ortopedia, diagnostyka i zabiegi."
+SITE_NAME = "Centrum Ortopedyczne OrthoCare"
+
+
+def meta_block(title: str, og_image: str = "") -> str:
+    image = f'  <meta property="og:image" content="{og_image}">\n' if og_image else ''
+    return (
+        f'  <meta name="description" content="{SITE_DESCRIPTION}">\n'
+        f'  <meta property="og:title" content="{title}">\n'
+        f'  <meta property="og:description" content="{SITE_DESCRIPTION}">\n'
+        f'{image}'
+        f'  <meta property="og:site_name" content="{SITE_NAME}">\n'
+        f'  <meta name="twitter:title" content="{title}">\n'
+        f'  <meta name="twitter:description" content="{SITE_DESCRIPTION}">\n'
+    )
+
+
+# Widget ZnanyLekarz (platform.docplanner.com) ładuje js/main.js wyłącznie po akceptacji cookies.
 SCRIPTS = """
+<script src="js/cookies.js" defer></script>
 <script src="js/main.js" defer></script>
-<script defer>
-(function () {
-  function loadBookingWidget() {
-    if (document.getElementById('zl-widget-s')) return;
-    var js = document.createElement('script');
-    js.id = 'zl-widget-s';
-    js.src = 'https://platform.docplanner.com/js/widget.js';
-    js.async = true;
-    document.body.appendChild(js);
-  }
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.umow-wizyte-btn, .zl-facility-url')) {
-      loadBookingWidget();
-    }
-  }, { passive: true });
-})();
-</script>
 """
 
 
@@ -340,6 +371,7 @@ def footer_html() -> str:
             <li><a href="assets/rodo.pdf" target="_blank">Klauzula RODO</a></li>
             <li><a href="assets/regulamin.pdf" target="_blank">Regulamin</a></li>
             <li><a href="assets/downloads/Polityka cookies serwisu OrthoCare.pdf" target="_blank">Polityka cookies</a></li>
+            <li><a href="#" data-cookie-settings>Ustawienia cookies</a></li>
           </ul>
         </div>
         <div class="footer-dark__col">
@@ -371,17 +403,56 @@ def page_title_block(title: str) -> str:
 </div>"""
 
 
-def shell(title: str, active: str, main_body: str, extra_css: bool = True, tailwind: bool = True, logo_src: str = LOGO, head_extra: str = "", preload_hero: bool = False) -> str:
+IMG_TAG_RE = re.compile(r'<img\b[^>]*?>', re.I)
+IMG_SRC_RE = re.compile(r'\bsrc="(assets/[^"]+?)\.(jpe?g|png)"', re.I)
+
+
+def wrap_webp(html: str) -> str:
+    """Wrap <img src="assets/x.jpg|png"> in <picture> with a WebP <source> when assets/x.webp exists.
+
+    Images that already sit inside a <picture> (directly after <picture> or <source>) are left untouched,
+    so the transformation is idempotent.
+    """
+    out = []
+    pos = 0
+    for m in IMG_TAG_RE.finditer(html):
+        tag = m.group(0)
+        src_m = IMG_SRC_RE.search(tag)
+        before = html[pos:m.start()]
+        out.append(before)
+        pos = m.end()
+        if not src_m:
+            out.append(tag)
+            continue
+        webp_rel = f"{src_m.group(1)}.webp"
+        if not (SRC / webp_rel).exists():
+            out.append(tag)
+            continue
+        prev = html[max(0, m.start() - 400):m.start()].rstrip()
+        if prev.endswith('>') and re.search(r'<(picture|source)\b[^>]*>$', prev, re.I):
+            out.append(tag)
+            continue
+        clean = tag[:-1].rstrip()
+        closing = '>'
+        if clean.endswith('/'):
+            clean = clean[:-1].rstrip()
+            closing = ' >'
+        out.append(f'<picture><source type="image/webp" srcset="{webp_rel}">{clean}{closing}</picture>')
+    out.append(html[pos:])
+    return ''.join(out)
+
+
+def shell(title: str, active: str, main_body: str, extra_css: bool = True, tailwind: bool = True, logo_src: str = LOGO, head_extra: str = "", preload_hero: bool = False, og_image: str = "") -> str:
     legacy = '  <link href="css/legacy.css" rel="stylesheet">\n' if extra_css else ''
     tailwind_link = '  <link href="dist/output.css" rel="stylesheet">\n' if tailwind else ''
-    preload = '  <link rel="preload" as="image" href="assets/hero-desktop.jpg" fetchpriority="high" media="(min-width: 769px)">\n  <link rel="preload" as="image" href="assets/hero-2.jpg" fetchpriority="high" media="(max-width: 768px)">\n' if preload_hero else ''
-    return f"""<!DOCTYPE html>
+    preload = '  <link rel="preload" as="image" href="assets/hero-desktop.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">\n  <link rel="preload" as="image" href="assets/hero-2.webp" type="image/webp" fetchpriority="high" media="(max-width: 768px)">\n' if preload_hero else ''
+    html = f"""<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
-{preload}{FONTS}  <link href="css/theme.css" rel="stylesheet">
+{meta_block(title, og_image)}{FAVICON}{preload}{FONTS}  <link href="css/theme.css" rel="stylesheet">
 {legacy}{tailwind_link}{head_extra}</head>
 <body>
 
@@ -399,6 +470,7 @@ def shell(title: str, active: str, main_body: str, extra_css: bool = True, tailw
 </body>
 </html>
 """
+    return wrap_webp(html)
 
 
 def fix_section_links(content: str) -> str:
@@ -438,19 +510,27 @@ def main():
         print(f"{filename} ({len(html)} bytes)")
 
     # Kontakt
-    kontakt_html = shell("Kontakt – Centrum Ortopedyczne OrthoCare – Radom", "kontakt", KONTAKT_BODY, extra_css=False, tailwind=False)
+    kontakt_html = shell(
+        "Kontakt – Centrum Ortopedyczne OrthoCare – Radom",
+        "kontakt",
+        KONTAKT_BODY,
+        extra_css=False,
+        tailwind=False,
+        og_image="https://ortopedawradomiu.pl/assets/budynek.jpg",
+    )
     (SRC / "kontakt.html").write_text(kontakt_html, encoding="utf-8")
     print(f"kontakt.html ({len(kontakt_html)} bytes)")
 
     # blog → kriolezja
-    blog = """<!DOCTYPE html>
+    blog_title = "Przekierowanie – Centrum Ortopedyczne OrthoCare"
+    blog = f"""<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="refresh" content="0;url=kriolezja.html">
   <link rel="canonical" href="kriolezja.html">
-  <title>Przekierowanie – Centrum Ortopedyczne OrthoCare</title>
-  <script>location.replace('kriolezja.html');</script>
+  <title>{blog_title}</title>
+{meta_block(blog_title)}{FAVICON}  <script>location.replace('kriolezja.html');</script>
 </head>
 <body><p><a href="kriolezja.html">Przejdź do Kriolezja</a></p></body>
 </html>

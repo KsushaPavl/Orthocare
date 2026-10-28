@@ -10,14 +10,12 @@
   <meta property="og:site_name" content="Centrum Ortopedyczne OrthoCare">
   <meta name="twitter:title" content="Centrum Ortopedyczne OrthoCare – Radom">
   <meta name="twitter:description" content="Centrum Ortopedyczne OrthoCare – Radom. Nowoczesna ortopedia, diagnostyka i zabiegi.">
-  <link rel="preload" as="image" href="assets/hero-desktop.jpg" fetchpriority="high" media="(min-width: 769px)">
-  <link rel="preload" as="image" href="assets/hero-2.jpg" fetchpriority="high" media="(max-width: 768px)">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="dns-prefetch" href="https://platform.docplanner.com">
+  <link rel="icon" type="image/jpeg" href="favicon.jpg?v=1">
+  <link rel="preload" as="image" href="assets/hero-desktop.webp" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
+  <link rel="preload" as="image" href="assets/hero-2.webp" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/dm-serif-display-400-latin.woff2" crossorigin>
+  <link href="css/fonts.css" rel="stylesheet">
   <link href="css/theme.css" rel="stylesheet">
 </head>
 <body>
@@ -26,7 +24,7 @@
 <nav class="nav">
   <div class="nav__wrap">
     <a href="index.html" class="nav__logo">
-      <img src="assets/logo-orthocare.png" alt="OrthoCare" width="180" height="38" decoding="async" />
+      <picture><source type="image/webp" srcset="assets/logo-orthocare.webp"><img src="assets/logo-orthocare.png" alt="OrthoCare" width="180" height="38" decoding="async" ></picture>
     </a>
     <ul class="nav__links" id="navLinks">
         <li><a href="o-nas.html">O nas</a></li>
@@ -69,19 +67,37 @@
 
   <section class="hero hero-desktop full-bleed">
     <picture>
-      <img src="assets/hero-desktop.jpg" alt="OrthoCare centrum ortopedyczne" class="hero-desktop__img" fetchpriority="high" decoding="async" width="3600" height="1558" sizes="100vw" />
+      <source type="image/webp" srcset="assets/hero-desktop.webp">
+      <img src="assets/hero-desktop.jpg" alt="OrthoCare centrum ortopedyczne" class="hero-desktop__img" fetchpriority="high" decoding="async" width="2800" height="1212" sizes="100vw" />
     </picture>
   </section>
 
   <section class="hero hero-mobile">
     <div class="hero-photos">
-      <img src="assets/hero-1.jpg" alt="OrthoCare">
-      <img src="assets/hero-2.jpg" alt="OrthoCare" class="hero-center">
-      <img src="assets/hero-3.jpg" alt="OrthoCare">
+      <picture>
+        <source type="image/webp" srcset="assets/hero-1.webp">
+        <img src="assets/hero-1.jpg" alt="OrthoCare" decoding="async" width="720" height="850">
+      </picture>
+      <picture class="hero-center">
+        <source type="image/webp" srcset="assets/hero-2.webp">
+        <img src="assets/hero-2.jpg" alt="OrthoCare" class="hero-center" fetchpriority="high" decoding="async" width="720" height="850">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="assets/hero-3.webp">
+        <img src="assets/hero-3.jpg" alt="OrthoCare" decoding="async" width="720" height="850">
+      </picture>
     </div>
     <div class="hero-plaque">
-      <h1 class="hero-logo">OrthoCare</h1>
-      <p class="hero-sub">centrum ortopedyczne</p>
+      <h1 class="hero-logo">
+        <picture>
+          <source type="image/webp" srcset="assets/logo-hero-white.webp">
+          <img src="assets/logo-hero-white.png" alt="OrthoCare" width="819" height="149" decoding="async">
+        </picture>
+      </h1>
+      <div class="hero-mobile-cta">
+        <button type="button" class="btn btn--primary umow-wizyte-btn">Umów wizytę</button>
+        <a href="o-nas.html" class="btn btn--outline">O nas</a>
+      </div>
     </div>
   </section>
 
@@ -95,15 +111,16 @@
         </div>
         <p class="intro-cta-text">Poznaj nas bliżej i zobacz, jak możemy Ci pomóc</p>
         <div class="intro-actions">
-          <a href="o-nas.html" class="btn btn--primary">O nas</a>
+          <button type="button" class="btn btn--primary umow-wizyte-btn">Umów wizytę</button>
+          <a href="o-nas.html" class="btn btn--outline">O nas</a>
         </div>
       </div>
     </div>
   </section>
 
   <section class="intro-team-photo full-bleed">
-    <img src="assets/team-photo.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--desktop" loading="lazy" decoding="async" fetchpriority="low" width="4711" height="1577" />
-    <img src="assets/team-mobile.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--mobile" loading="lazy" decoding="async" width="1024" height="682" />
+    <picture><source type="image/webp" srcset="assets/team-photo.webp"><img src="assets/team-photo.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--desktop" loading="lazy" decoding="async" fetchpriority="low" width="2800" height="937" ></picture>
+    <picture><source type="image/webp" srcset="assets/team-mobile.webp"><img src="assets/team-mobile.jpg" alt="Zespół lekarzy OrthoCare" class="intro-team-photo__img intro-team-photo__img--mobile" loading="lazy" decoding="async" width="1024" height="682" ></picture>
   </section>
 
   <section class="section home-section">
@@ -112,7 +129,7 @@
       <div class="cards-carousel" data-cards-carousel>
         <div class="cards-grid cards-grid--swipe cards-grid--steps" id="practiceCards" data-cards-track>
         <div class="card3">
-          <div class="card3__img"><img src="assets/step-1.jpg" alt="Krok 1 – konsultacja" loading="lazy" decoding="async" /></div>
+          <div class="card3__img"><picture><source type="image/webp" srcset="assets/step-1.webp"><img src="assets/step-1.jpg" alt="Krok 1 – konsultacja" loading="lazy" decoding="async" ></picture></div>
           <div class="card3__body">
             <p class="subhead" style="margin-bottom:8px">Krok 1</p>
             <h3 class="card3__title">Rozmowa, która naprawdę coś wnosi</h3>
@@ -120,7 +137,7 @@
           </div>
         </div>
         <div class="card3">
-          <div class="card3__img"><img src="assets/step-2.jpg" alt="Krok 2 – leczenie" loading="lazy" decoding="async" /></div>
+          <div class="card3__img"><picture><source type="image/webp" srcset="assets/step-2.webp"><img src="assets/step-2.jpg" alt="Krok 2 – leczenie" loading="lazy" decoding="async" ></picture></div>
           <div class="card3__body">
             <p class="subhead" style="margin-bottom:8px">Krok 2</p>
             <h3 class="card3__title">Leczenie, które ma sens</h3>
@@ -128,7 +145,7 @@
           </div>
         </div>
         <div class="card3">
-          <div class="card3__img"><img src="assets/step-3.jpg" alt="Krok 3 – opieka" loading="lazy" decoding="async" /></div>
+          <div class="card3__img"><picture><source type="image/webp" srcset="assets/step-3.webp"><img src="assets/step-3.jpg" alt="Krok 3 – opieka" loading="lazy" decoding="async" ></picture></div>
           <div class="card3__body">
             <p class="subhead" style="margin-bottom:8px">Krok 3</p>
             <h3 class="card3__title">Opieka bez ram czasowych</h3>
@@ -163,7 +180,7 @@
     <div class="wrap">
       <div class="footer-dark__grid">
         <div class="footer-dark__brand">
-          <img src="assets/logo-footer.png" alt="OrthoCare" class="footer-dark__logo" loading="lazy" decoding="async" width="240" height="96" />
+          <picture><source type="image/webp" srcset="assets/logo-footer.webp"><img src="assets/logo-footer.png" alt="OrthoCare" class="footer-dark__logo" loading="lazy" decoding="async" width="240" height="96" ></picture>
           <p class="footer-dark__tagline">Ortopedia nowego pokolenia. Łączymy najnowocześniejszą wiedzę medyczną z indywidualnym podejściem.</p>
           <div class="footer-dark__social">
             <a href="https://www.facebook.com/profile.php?id=61564864085861&sk=about" target="_blank" class="footer-social-btn" aria-label="Facebook">fb</a>
@@ -187,15 +204,16 @@
             <li><a href="assets/rodo.pdf" target="_blank">Klauzula RODO</a></li>
             <li><a href="assets/regulamin.pdf" target="_blank">Regulamin</a></li>
             <li><a href="assets/downloads/Polityka cookies serwisu OrthoCare.pdf" target="_blank">Polityka cookies</a></li>
+            <li><a href="#" data-cookie-settings>Ustawienia cookies</a></li>
           </ul>
         </div>
         <div class="footer-dark__col">
           <p class="footer-dark__heading">Nasi partnerzy</p>
           <div class="footer-dark__partners">
-            <a href="https://warsaweagles.com/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-eagles.png" alt="Warsaw Eagles" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://www.rplusradom.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-rehab-plus.png" alt="Rehabilitacja Plus" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://www.wksczarni.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><img src="assets/partner-czarni-radom.png" alt="WKS Czarni Radom" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
-            <a href="https://gipsme.pl/" target="_blank" rel="noopener" class="footer-partner-tile footer-partner-tile--gipsme"><img src="assets/gipsme.png" alt="gipsme" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" /></a>
+            <a href="https://warsaweagles.com/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-eagles.webp"><img src="assets/partner-eagles.png" alt="Warsaw Eagles" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://www.rplusradom.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-rehab-plus.webp"><img src="assets/partner-rehab-plus.png" alt="Rehabilitacja Plus" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://www.wksczarni.pl/" target="_blank" rel="noopener" class="footer-partner-tile"><picture><source type="image/webp" srcset="assets/partner-czarni-radom.webp"><img src="assets/partner-czarni-radom.png" alt="WKS Czarni Radom" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
+            <a href="https://gipsme.pl/" target="_blank" rel="noopener" class="footer-partner-tile footer-partner-tile--gipsme"><picture><source type="image/webp" srcset="assets/gipsme.webp"><img src="assets/gipsme.png" alt="gipsme" class="footer-partner-logo" loading="lazy" decoding="async" width="80" height="80" ></picture></a>
           </div>
         </div>
       </div>
@@ -228,24 +246,8 @@
 
 
 
+<script src="js/cookies.js" defer></script>
 <script src="js/main.js" defer></script>
-<script defer>
-(function () {
-  function loadBookingWidget() {
-    if (document.getElementById('zl-widget-s')) return;
-    var js = document.createElement('script');
-    js.id = 'zl-widget-s';
-    js.src = 'https://platform.docplanner.com/js/widget.js';
-    js.async = true;
-    document.body.appendChild(js);
-  }
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.umow-wizyte-btn, .zl-facility-url')) {
-      loadBookingWidget();
-    }
-  }, { passive: true });
-})();
-</script>
 
 </body>
 </html>

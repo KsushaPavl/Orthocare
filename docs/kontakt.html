@@ -12,12 +12,9 @@
   <meta name="twitter:title" content="Kontakt – Centrum Ortopedyczne OrthoCare – Radom">
   <meta name="twitter:description" content="Centrum Ortopedyczne OrthoCare – Radom. Nowoczesna ortopedia, diagnostyka i zabiegi.">
   <link rel="icon" type="image/jpeg" href="favicon.jpg?v=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="dns-prefetch" href="https://platform.docplanner.com">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-variable-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/dm-serif-display-400-latin.woff2" crossorigin>
+  <link href="css/fonts.css" rel="stylesheet">
   <link href="css/theme.css" rel="stylesheet">
 </head>
 <body>
@@ -128,7 +125,16 @@
             </div>
           </div>
           <div class="kontakt-visit__map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458!2d21.15!3d51.405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sul.+D%C4%99bowa+2+Radom!5e0!3m2!1spl!2spl!4v1" allowfullscreen loading="lazy" title="Mapa OrthoCare"></iframe>
+            <!-- Mapa Google wczytywana przez js/cookies.js dopiero po akceptacji plików cookies -->
+            <div class="map-consent" data-consent-map data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2458!2d21.15!3d51.405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sul.+D%C4%99bowa+2+Radom!5e0!3m2!1spl!2spl!4v1" data-map-title="Mapa OrthoCare" data-map-link="https://maps.google.com/?q=ul.+Dębowa+2,+26-600+Radom">
+              <div class="map-consent__box">
+                <p class="map-consent__text">Aby wyświetlić mapę, zaakceptuj pliki cookies.</p>
+                <div class="map-consent__actions">
+                  <button type="button" class="btn btn--primary" data-cookie-accept>Akceptuję</button>
+                  <a class="btn btn--outline" href="https://maps.google.com/?q=ul.+Dębowa+2,+26-600+Radom" target="_blank" rel="noopener">Otwórz w Google Maps</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -166,6 +172,7 @@
             <li><a href="assets/rodo.pdf" target="_blank">Klauzula RODO</a></li>
             <li><a href="assets/regulamin.pdf" target="_blank">Regulamin</a></li>
             <li><a href="assets/downloads/Polityka cookies serwisu OrthoCare.pdf" target="_blank">Polityka cookies</a></li>
+            <li><a href="#" data-cookie-settings>Ustawienia cookies</a></li>
           </ul>
         </div>
         <div class="footer-dark__col">
@@ -207,24 +214,8 @@
 
 
 
+<script src="js/cookies.js" defer></script>
 <script src="js/main.js" defer></script>
-<script defer>
-(function () {
-  function loadBookingWidget() {
-    if (document.getElementById('zl-widget-s')) return;
-    var js = document.createElement('script');
-    js.id = 'zl-widget-s';
-    js.src = 'https://platform.docplanner.com/js/widget.js';
-    js.async = true;
-    document.body.appendChild(js);
-  }
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.umow-wizyte-btn, .zl-facility-url')) {
-      loadBookingWidget();
-    }
-  }, { passive: true });
-})();
-</script>
 
 </body>
 </html>

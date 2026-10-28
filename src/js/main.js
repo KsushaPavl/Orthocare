@@ -346,6 +346,7 @@ function handleBookingModal() {
     }
 
     function openModal() {
+        applyBookingConsent(modal);
         modal.classList.remove('hidden');
         body.classList.add('overflow-hidden');
     }
@@ -388,14 +389,58 @@ function handleBookingModal() {
 document.addEventListener('DOMContentLoaded', handleBookingModal);
 
 // Delegated booking modal handling for pages that load header dynamically
+function hasCookieConsent() {
+    return !!(window.OCConsent && window.OCConsent.accepted());
+}
+
+// Skrypt widgetu ZnanyLekarz (platform.docplanner.com) ładujemy wyłącznie po akceptacji cookies.
 function ensureBookingWidgetScript() {
+    if (!hasCookieConsent()) {
+        return;
+    }
     if (!document.getElementById('zl-widget-s')) {
         const script = document.createElement('script');
         script.id = 'zl-widget-s';
-        script.src = '//platform.docplanner.com/js/widget.js';
+        script.src = 'https://platform.docplanner.com/js/widget.js';
         document.head.appendChild(script);
     }
 }
+
+// W oknie rezerwacji: bez zgody pokazujemy informację zamiast widgetu
+function applyBookingConsent(modal) {
+    const widget = modal && modal.querySelector('.booking-modal__widget');
+    if (!widget) {
+        return;
+    }
+    let notice = widget.querySelector('.consent-notice');
+    if (hasCookieConsent()) {
+        if (notice) {
+            notice.remove();
+        }
+        widget.classList.remove('booking-modal__widget--blocked');
+        ensureBookingWidgetScript();
+        return;
+    }
+    widget.classList.add('booking-modal__widget--blocked');
+    if (!notice) {
+        notice = document.createElement('div');
+        notice.className = 'consent-notice';
+        notice.setAttribute('role', 'status');
+        notice.innerHTML =
+            '<p class="consent-notice__text">Formularz rezerwacji ZnanyLekarz korzysta z plików cookies. Aby go wyświetlić, zaakceptuj pliki cookies.</p>' +
+            '<div class="consent-notice__actions">' +
+                '<button type="button" class="btn btn--primary" data-cookie-accept>Akceptuję</button>' +
+            '</div>';
+        widget.insertBefore(notice, widget.firstChild);
+    }
+}
+
+document.addEventListener('oc:consent', function () {
+    const modal = document.getElementById('booking-modal');
+    if (modal && !modal.classList.contains('hidden')) {
+        applyBookingConsent(modal);
+    }
+});
 
 function ensureBookingModalElement() {
     let modal = document.getElementById('booking-modal');
@@ -426,6 +471,7 @@ function ensureBookingModalElement() {
 }
 
 function openBookingModal(modal) {
+    applyBookingConsent(modal);
     modal.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
 }
