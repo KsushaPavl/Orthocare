@@ -4,7 +4,7 @@
   'use strict';
 
   var KEY = 'oc_cookie_consent';
-  var POLICY = 'assets/downloads/Polityka cookies serwisu OrthoCare.pdf';
+  var POLICY = 'assets/downloads/polityka-cookies-orthocare.pdf';
   var MAPS_FALLBACK = 'https://maps.google.com/?q=ul.+D\u0119bowa+2,+26-600+Radom';
 
   function read() {
