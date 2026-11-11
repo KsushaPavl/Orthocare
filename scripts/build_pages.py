@@ -355,14 +355,13 @@ def nav_html(active: str, logo_src: str = LOGO) -> str:
 def footer_html() -> str:
     nav_items = ''.join(f'            <li><a href="{href}">{label}</a></li>\n' for _, label, href in NAV_LINKS)
     nav_items += '            <li><a href="kontakt.html">Kontakt</a></li>\n'
-    nav_items += '            <li><a href="pliki-do-pobrania.html">Dokumenty do pobrania</a></li>\n'
     return f"""<footer class="footer-dark">
   <div class="footer-dark__top">
     <div class="wrap">
       <div class="footer-dark__grid">
         <div class="footer-dark__brand">
           <img src="assets/logo-footer.png" alt="OrthoCare" class="footer-dark__logo" loading="lazy" decoding="async" width="240" height="96" />
-          <p class="footer-dark__tagline">Ortopedia nowego pokolenia. Łączymy najnowocześniejszą wiedzę medyczną z indywidualnym podejściem.</p>
+          <p class="footer-dark__tagline">Specjalistyczne ambulatoryjne świadczenia zdrowotne w zakresie ortopedii i traumatologii narządu ruchu oraz diagnostyki obrazowej</p>
           <div class="footer-dark__social">
             <a href="https://www.facebook.com/profile.php?id=61564864085861&sk=about" target="_blank" class="footer-social-btn" aria-label="Facebook">fb</a>
             <a href="https://www.instagram.com/klinika_orthocare/" target="_blank" class="footer-social-btn" aria-label="Instagram">ig</a>
@@ -380,6 +379,7 @@ def footer_html() -> str:
             <li><a href="assets/downloads/polityka-prywatnosci-orthocare.pdf" target="_blank" rel="noopener">Polityka prywatności</a></li>
             <li><a href="assets/downloads/polityka-cookies-orthocare.pdf" target="_blank" rel="noopener">Polityka cookies</a></li>
             <li><a href="assets/downloads/standardy-ochrony-maloletnich-orthocare.pdf" target="_blank" rel="noopener">Standardy Ochrony Małoletnich</a></li>
+            <li><a href="assets/downloads/zasady-udostepniania-dokumentacji-medycznej.pdf" target="_blank" rel="noopener">Zasady udostępniania dokumentacji medycznej</a></li>
           </ul>
         </div>
         <div class="footer-dark__col">
