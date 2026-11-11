@@ -23,5 +23,7 @@ rsync -a \
 if [ -n "$CNAME" ]; then
   printf '%s\n' "$CNAME" > "$ROOT/docs/CNAME"
 fi
+# Skip Jekyll so GitHub Pages publishes docs/ as a static site (PDFs/HTML as-is).
+: > "$ROOT/docs/.nojekyll"
 
 echo "Published src/ to docs/"
