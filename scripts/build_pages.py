@@ -43,13 +43,6 @@ PAGES = {
         "section": "kriolezja.html",
         "narrow": False,
     },
-    "pliki-do-pobrania.html": {
-        "title": "Dokumenty do pobrania – Centrum Ortopedyczne OrthoCare – Radom",
-        "active": "",
-        "page_title": "Dokumenty do pobrania",
-        "section": "pliki-do-pobrania.html",
-        "narrow": True,
-    },
 }
 
 NAV_LINKS = [
